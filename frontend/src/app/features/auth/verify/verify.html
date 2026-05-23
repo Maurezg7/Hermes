@@ -1,0 +1,15 @@
+<div id="cont_verify">
+  <form (ngSubmit)="onSubmit()">
+    <h1>AUTENTICATE</h1>
+    <p>Ingresa tu codigo de verificacion enviado al email.</p>
+
+    <div class="code-container">
+      @for (digit of code; track $index) {
+      <input type="text" maxlength="1" class="code-input" [(ngModel)]="code[$index]" (keyup)="onKeyUp($event, $index)"
+        id="digit-{{$index}}" name="digit-{{$index}}" autocomplete="off">
+      }
+    </div>
+
+    <button type="submit">VERIFICAR</button>
+  </form>
+</div>

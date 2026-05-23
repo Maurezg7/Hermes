@@ -1,0 +1,269 @@
+:host {
+  display: contents;
+}
+
+#banner {
+  width: 72px;
+  background-color: #1e1f22;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+  height: 100vh;
+  overflow-y: visible;
+  overflow-x: visible;
+  position: relative;
+  border-right: 1px solid rgba(255, 255, 255, 0.397);
+
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+}
+
+.nav-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background-color: #313338;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: border-radius 0.2s, background-color 0.2s;
+  position: relative;
+
+  &:hover {
+    border-radius: 16px;
+    background-color: orange;
+
+    .tooltip {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+  }
+
+  img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+}
+
+.tooltip {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  margin-left: 12px;
+  padding: 8px 12px;
+  background-color: #060607;
+  color: #f2f3f5;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 100;
+
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-50%) translateX(-10px);
+  transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+  &::before {
+    content: '';
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-right-color: #060607;
+  }
+}
+
+.notification-bubble {
+  position: absolute;
+  left: 75px;
+  top: 0;
+  width: 280px;
+  max-height: 400px;
+  background-color: #313338;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 1001;
+  overflow-y: auto;
+}
+
+.notification-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background-color: #ed4245;
+  color: white !important;
+  border-radius: 10px;
+  padding: 0 6px;
+  font-size: 12px;
+  font-weight: bold;
+  border: 3px solid #1e1f22;
+}
+
+.notif-header {
+  padding: 12px;
+  font-weight: bold;
+  border-bottom: 1px solid #3f4147;
+  color: white;
+  font-family: sans-serif;
+}
+
+.notif-body {
+  padding: 8px;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.notif-section {
+  margin-bottom: 12px;
+}
+
+.notif-section-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: white;
+  margin-bottom: 8px;
+  padding: 0 4px;
+}
+
+.notif-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #2b2d31;
+  margin-bottom: 4px;
+
+  &.notif-unread {
+    background-color: #3f4147;
+  }
+}
+
+.notif-message {
+  font-size: 13px;
+  color: #f2f3f5;
+}
+
+.notif-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.user-name {
+  font-size: 13px;
+  color: #f2f3f5;
+}
+
+.btn-accept {
+  background-color: #23a559;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+
+  &:hover {
+    background-color: #2dbf64;
+  }
+}
+
+.btn-reject {
+  background-color: #ed4245;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+
+  &:hover {
+    background-color: #f23f43;
+  }
+}
+
+.notif-empty {
+  text-align: center;
+  color: #949ba4;
+  padding: 20px;
+  font-size: 13px;
+}
+
+.separator {
+  width: 32px;
+  height: 2px;
+  background-color: #35363c;
+  margin: 4px 0;
+}
+
+.nav-btn {
+  position: relative;
+
+  span.tooltip {
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    margin-left: 12px;
+    padding: 8px 12px;
+    background-color: #060607;
+    color: #f2f3f5;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 100;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-50%) translateX(-10px);
+    transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+    &::before {
+      content: '';
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 5px solid transparent;
+      border-right-color: #060607;
+    }
+  }
+
+  svg {
+    width: 60%;
+    height: 60%;
+  }
+
+  &:hover {
+    border-radius: 16px;
+    background-color: orange;
+
+    span.tooltip {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+  }
+}

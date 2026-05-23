@@ -1,0 +1,16 @@
+:host {
+  display: contents;
+}
+
+#app-cont {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}

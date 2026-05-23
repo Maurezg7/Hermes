@@ -1,0 +1,94 @@
+<div id="app-cont">
+  <app-sidebar
+    [servers]="allUserServers"
+    [friends]="acceptedFriends"
+    [pendingRequests]="pendingRequests"
+    [notifications]="notifications"
+    [isFriendsMode]="isFriends"
+    (onHome)="returnHome()"
+    (onToggleMode)="isFriends = !isFriends; isFriends ? refreshFriends() : refreshServers()"
+    (onServerSelect)="loadChannels($event); loadMembers($event)"
+    (onFriendSelect)="loadPrivateMessages($event.id, $event.username)"
+    (onCreateServer)="isModalOpen = true"
+    (onAddFriend)="toggleFriendModal(true)"
+    (onAcceptFriend)="acceptFriend($event)"
+    (onRejectFriend)="rejectFriend($event)"
+    (onAcceptServerInvite)="acceptServerInvite($event)"
+    (onRejectServerInvite)="rejectServerInvite($event)"
+  >
+  </app-sidebar>
+
+  <main class="main-content">
+    @if (idUser !== null) {
+      <app-channel-list
+        [channels]="allChannelsServer"
+        [serverId]="idServerSeleccionado"
+        [currentUserId]="idUser"
+        [username]="username"
+        [pendingRequests]="serverPendingRequests"
+        [userState]="userState"
+        (onSelectChannel)="loadChatbox($event.channelId, $event.name)"
+        (onCreateChannel)="isModalChannel = true"
+        (onInviteUser)="toggleInviteModal(true)"
+        (onApproveRequest)="approveServerRequest($event)"
+        (onRejectRequest)="rejectServerRequest($event)"
+        (onViewServerUsers)="isModalUserServers = true"
+        (onStateChange)="updateUserState($event)"
+      >
+      </app-channel-list>
+    } @else {
+      <div>Cargando perfil...</div>
+    }
+
+    <app-chat-area
+      [messages]="allMessages"
+      [channelName]="currentChannelName"
+      [idUser]="idUser"
+      [isChannelSelected]="!!idChannelSeleccionado"
+      (onSendMessage)="newMessage = $event; sendMessage()"
+      (onViewServerUsers)="isModalUserServers = true"
+      [idServer]="idServerSeleccionado"
+    >
+    </app-chat-area>
+  </main>
+
+  <app-modals
+    [activeModal]="
+      isModalOpen
+        ? 'server'
+        : isModalChannel
+          ? 'channel'
+          : isModalFriend
+            ? 'friend'
+            : isModalInvite
+              ? 'invite'
+              : isModalUserServers
+                ? 'userservers'
+                : null
+    "
+    [server]="server"
+    [channel]="channel"
+    [friendUsername]="friendUsername"
+    [friendError]="friendError"
+    [searchResults]="searchResults"
+    [inviteUsername]="inviteUsername"
+    [inviteError]="inviteError"
+    [inviteSuccess]="inviteSuccess"
+    [userServers]="userServers"
+    [members]="allMembersService"
+    (onClose)="
+      isModalOpen = false;
+      isModalChannel = false;
+      isModalUserServers = false;
+      toggleFriendModal(false);
+      toggleInviteModal(false)
+    "
+    (onSubmitServer)="onSubmitServer()"
+    (onSubmitChannel)="onSubmitChannel()"
+    (onSubmitFriend)="sendFriendRequest($event)"
+    (onSubmitInvite)="sendServerInvite($event)"
+    (friendUsernameChange)="onFriendNameChange($event)"
+    (inviteUsernameChange)="onInviteNameChange($event)"
+  >
+  </app-modals>
+</div>

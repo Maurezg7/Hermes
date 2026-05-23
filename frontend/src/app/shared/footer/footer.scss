@@ -1,0 +1,119 @@
+footer {
+  height: 85vh;
+  width: 100%;
+  background-color: #383838;
+  display: flex;
+  flex-direction: column;
+
+  #Info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+
+    #lang-social {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 30%;
+      height: 100%;
+
+      select {
+        margin-top: 20%;
+        width: 200px;
+        height: 25px;
+        margin-left: 25%;
+        background-color: #383838;
+        border: none;
+        color: white;
+      }
+
+      #lang option[data-image] {
+        padding-left: 24px;
+        background-repeat: no-repeat;
+        background-position: 3px 50%;
+      }
+
+      #lang option[value="esp"][data-image] {
+        background-image: url("../../../../public/flags/espana.png");
+      }
+
+      #lang option[value="eng"][data-image] {
+        background-image: url("../../../../public/flags/reino-unido.png");
+      }
+
+      ul {
+        display: flex;
+        flex-direction: row;
+        margin-top: 45px;
+        margin-left: 22%;
+        list-style: none;
+
+        li {
+          margin: 0 12px;
+
+          a {
+            text-decoration: none;
+            color: white;
+
+            .svg-icon {
+              width: 24px;
+              height: 24px;
+              fill: #FF0000;
+            }
+          }
+        }
+      }
+    }
+
+    #data-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      width: 70%;
+      height: 100%;
+
+      ul {
+        margin-top: 7%;
+        width: 200px;
+        list-style: none;
+
+        span {
+          color: #fc9d44;
+          margin: 15px 0;
+          display: block;
+        }
+
+        li {
+          margin: 15px 0;
+
+          a {
+            text-decoration: none;
+            color: white;
+          }
+
+          &:hover a {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  #nav_footer {
+    width: 80%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    border-top: #fc9d44 2px solid;
+
+    #logo_image_footer a img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
