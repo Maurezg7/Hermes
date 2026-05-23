@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { MessageDTO, MessageRequest } from '../models/message.model';
 
@@ -8,7 +9,7 @@ import { MessageDTO, MessageRequest } from '../models/message.model';
 })
 export class MessageService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/messages';
+  private apiUrl = `${environment.apiUrl}/messages`;
 
   createMessage(content: MessageRequest, idEmisor: number, idReceptor: number): Observable<MessageDTO> {
     return this.http.post<MessageDTO>(`${this.apiUrl}/emisor/${idEmisor}/receptor/${idReceptor}`, content);

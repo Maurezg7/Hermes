@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { Server } from '../models/server.model';
 import { Observable } from 'rxjs';
 
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ServerService {
-  private urlBase = 'http://localhost:8080/api/servers';
+  private urlBase = `${environment.apiUrl}/servers`;
   private clientHttp = inject(HttpClient);
 
   getAllUserServer(id: Number): Observable<any> {

@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { FriendDTO } from '../models/friendship.model';
 import { MessageDTO } from '../models/message.model';
@@ -10,7 +11,7 @@ import { MessageDTO } from '../models/message.model';
 })
 export class FriendshipService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/friends';
+  private apiUrl = `${environment.apiUrl}/friends`;
 
   sendFriendRequest(userId: number, friendId: number): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/request/${userId}/${friendId}`, {});

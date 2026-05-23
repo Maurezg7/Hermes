@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
 import { ServerRequest } from '../models/server-request.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ChannelRequestService {
-  private apiUrl = 'http://localhost:8080/api/server-requests';
+  private apiUrl = `${environment.apiUrl}/server-requests`;
 
   constructor(private http: HttpClient) {}
 

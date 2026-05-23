@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Notification } from '../models/notification.model';
 
@@ -8,7 +9,7 @@ import { Notification } from '../models/notification.model';
 })
 export class NotificationService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/notifications';
+  private apiUrl = `${environment.apiUrl}/notifications`;
 
   getNotifications(userId: number): Observable<Notification[]> {
     return this.http.get<Notification[]>(`${this.apiUrl}/${userId}`);

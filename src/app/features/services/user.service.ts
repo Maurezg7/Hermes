@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { AuthUser } from '../models/auth-user.model';
@@ -8,7 +9,7 @@ import { AuthUser } from '../models/auth-user.model';
   providedIn: 'root',
 })
 export class UserService {
-  private urlBase = 'http://localhost:8080/api/users';
+  private urlBase = `${environment.apiUrl}/users`;
   private clientHttp = inject(HttpClient);
 
   getUser(userData: String): Observable<any> {

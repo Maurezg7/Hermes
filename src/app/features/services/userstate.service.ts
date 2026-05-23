@@ -1,9 +1,10 @@
 import { inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { environment } from '../../../environments/environment';
 import { Observable } from "rxjs";
 
 export class StateUserService {
-  private urlBase = 'http://localhost:8080/api/statesuser';
+  private urlBase = `${environment.apiUrl}/statesuser`;
   private clientHttp = inject(HttpClient);
 
   getStateUser(idUser: number): Observable<string> {

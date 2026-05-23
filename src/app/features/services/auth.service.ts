@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { Observable, tap } from 'rxjs';
 import { AuthUser } from '../models/auth-user.model';
 import { ChangePassword } from '../models/change-password.model';
@@ -10,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private urlBase = 'http://localhost:8080/api/auth';
+  private urlBase = `${environment.apiUrl}/auth`;
   private clientHttp = inject(HttpClient);
   private userSubject = new BehaviorSubject<string | null>(localStorage.getItem('currentUser'));
   public currentUser$ = this.userSubject.asObservable();

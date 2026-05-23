@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Chatbox } from '../models/chatbox.model';
 
@@ -7,7 +8,7 @@ import { Chatbox } from '../models/chatbox.model';
   providedIn: 'root',
 })
 export class ChatboxService {
-  private urlBase = 'http://localhost:8080/api/chatbox';
+  private urlBase = `${environment.apiUrl}/chatbox`;
   private clientHttp = inject(HttpClient);
 
   getPagedMessagesChatbox(
