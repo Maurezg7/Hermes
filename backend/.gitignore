@@ -3,8 +3,12 @@ target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+**/src/main/resources/application-dev.properties
+!**/src/main/resources/application-dev.properties
+backend/src/main/resources/application-dev.properties
+**/application-dev.properties
 
-### STS ###
+
 .apt_generated
 .classpath
 .factorypath
@@ -13,13 +17,11 @@ target/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
 /nbproject/private/
 /nbbuild/
 /dist/
@@ -29,8 +31,41 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
 .vscode/
 
-### Environment variables ###
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+/node_modules
+npm-debug.log
+yarn-error.log
+
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+.history/*
+
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+__screenshots__/
+
+.DS_Store
+Thumbs.db
+
+*.log
+
 .env
+.env.local
+.env.*.local
+
+*.db
+*.sqlite
