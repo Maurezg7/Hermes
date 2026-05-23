@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/api/channels")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://vercel.app")
 public class ChannelController {
     private final ChannelService channelService;
     

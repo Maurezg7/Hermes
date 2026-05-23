@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/api/friends")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://vercel.app")
 public class FriendshipController {
     private final FriendshipService friendshipService;
 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/statesuser")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://vercel.app")
 public class StateUserController {
     private final StatesUserService stateService;
 
