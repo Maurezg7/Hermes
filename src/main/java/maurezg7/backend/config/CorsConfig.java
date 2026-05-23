@@ -2,10 +2,12 @@ package maurezg7.backend.config;
 
 import java.util.Arrays;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+@Configuration
 public class CorsConfig {
         @Bean
         public CorsFilter corsFilter() {
@@ -14,7 +16,8 @@ public class CorsConfig {
 
                 corsConfiguration.setAllowedOrigins(Arrays.asList(
                                 "http://localhost:4200",
-                                "http://localhost:8080"));
+                                "http://localhost:8080",
+                                "https://vercel.app")); 
 
                 corsConfiguration.setAllowedHeaders(Arrays.asList(
                                 "Origin", "Access-Control-Allow-Origin", "Content-Type",
