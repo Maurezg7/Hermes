@@ -1,54 +1,35 @@
-HELP.md
-target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-**/src/main/resources/application-dev.properties
-!**/src/main/resources/application-dev.properties
-backend/src/main/resources/application-dev.properties
-**/application-dev.properties
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
-
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-.idea
-*.iws
-*.iml
-*.ipr
-
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-.vscode/
-
+# Compiled output
 /dist
 /tmp
 /out-tsc
 /bazel-out
 
+# Node
 /node_modules
 npm-debug.log
 yarn-error.log
 
+# IDEs and editors
+.idea/
+.project
+.classpath
 .c9/
 *.launch
 .settings/
 *.sublime-workspace
 
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/mcp.json
 .history/*
 
+# Miscellaneous
 /.angular/cache
 .sass-cache/
 /connect.lock
@@ -58,14 +39,6 @@ testem.log
 /typings
 __screenshots__/
 
+# System files
 .DS_Store
 Thumbs.db
-
-*.log
-
-.env
-.env.local
-.env.*.local
-
-*.db
-*.sqlite
