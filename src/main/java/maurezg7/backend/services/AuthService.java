@@ -17,6 +17,8 @@ import maurezg7.backend.models.entity.User;
 import maurezg7.backend.repository.AuthRepository;
 import maurezg7.backend.repository.UserRepository;
 import maurezg7.backend.security.JwtUtils;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AuthService {
