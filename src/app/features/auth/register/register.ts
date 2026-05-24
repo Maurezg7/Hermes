@@ -13,6 +13,7 @@ import { Server } from '../../models/server.model';
   styleUrl: './register.scss',
 })
 export class Register {
+  loading: boolean = false;
   private authService = inject(AuthService);
   private router = inject(Router);
   user: User = new User();
@@ -23,6 +24,8 @@ export class Register {
   typeLocked = 'password';
 
   onSumbit() {
+    if (this.loading) return;
+    this.loading = true;
     if (this.user.password === this.confirmPassword) {
       this.registerUser();
     } else {
@@ -37,12 +40,15 @@ export class Register {
   }
 
   private registerUser() {
+    this.loading = true;
     this.authService.postRegister(this.user).subscribe({
       next: (data) => {
+        this.loading = false;
         this.irLogin();
       },
       error: (error: any) => {
-        console.error(error);
+        this.loading = false;
+        alert('Ocurrió un error al registrar: ' + (error.error?.message || error.message || error));
       },
     });
   }
