@@ -19,17 +19,15 @@ public class CorsConfig {
                                 "http://localhost:8080",
                                 "https://hermes-c6gswsisi-maurezg7.vercel.app")); 
 
+                // Simplificado para permitir las cabeceras estándar necesarias
                 corsConfiguration.setAllowedHeaders(Arrays.asList(
-                                "Origin", "Access-Control-Allow-Origin", "Content-Type",
-                                "Accept", "Authorization", "X-Requested-With",
-                                "Access-Control-Request-Method", "Access-Control-Request-Headers"));
+                                "Origin", "Content-Type", "Accept", "Authorization", "X-Requested-With"));
 
                 corsConfiguration.setAllowedMethods(Arrays.asList(
-                                "GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                                "GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"));
 
                 corsConfiguration.setExposedHeaders(Arrays.asList(
-                                "Origin", "Content-Type", "Accept", "Authorization",
-                                "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
+                                "Authorization", "Content-Type"));
 
                 corsConfiguration.setMaxAge(3600L);
 
