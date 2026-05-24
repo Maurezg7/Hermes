@@ -57,8 +57,6 @@ export class Register {
     this.authUser.setDataUser(this.user.username || this.user.email);
     this.authUser.setDataPassword(this.user.password);
 
-    this.router.navigate(['/verify'], {
-      state: { authUser: this.authUser },
-    });
+    this.router.navigate(['/login']);
   }
 }
