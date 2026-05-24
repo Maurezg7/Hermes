@@ -17,7 +17,7 @@ public class CorsConfig {
                 corsConfiguration.setAllowedOrigins(Arrays.asList(
                                 "http://localhost:4200",
                                 "http://localhost:8080",
-                                "https://vercel.app")); 
+                                "https://hermes-c6gswsisi-maurezg7.vercel.app")); 
 
                 corsConfiguration.setAllowedHeaders(Arrays.asList(
                                 "Origin", "Access-Control-Allow-Origin", "Content-Type",
