@@ -2,19 +2,13 @@ package maurezg7.backend.services;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-
-import java.lang.Thread.State;
-import java.security.SecureRandom;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.time.LocalDateTime;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDateTime;
 import maurezg7.backend.exception.ResourceNotFoundException;
 import maurezg7.backend.models.DTO.AuthServiceDTO;
 import maurezg7.backend.models.DTO.ChangePassword;
@@ -31,21 +25,18 @@ public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
-
-    @Autowired
     private final StatesUserService statesUserService;
 
     public AuthService(JavaMailSender mailSender, AuthRepository authRepository, UserRepository userRepository,
-            PasswordEncoder passwordEncoder, JwtUtils jwtUtils) {
+            PasswordEncoder passwordEncoder, JwtUtils jwtUtils, StatesUserService statesUserService) {
         this.mailSender = mailSender;
         this.authRepository = authRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.statesUserService = new StatesUserService();
+        this.statesUserService = statesUserService;
         this.jwtUtils = jwtUtils;
     }
 
-    @Async
     public void register(AuthServiceDTO registerdDto) throws MessagingException {
         if (registerdDto == null)
             throw new IllegalArgumentException("User cannot be null");
@@ -79,8 +70,6 @@ public class AuthService {
             throw new RuntimeException("Incorrect password");
         }
 
-        // CORRECCIÓN: Descomentamos esto para que el código de verificación REALMENTE
-        // se genere y guarde en Neon
         if (user.getUser_verify() == false) {
             java.security.SecureRandom random = new java.security.SecureRandom();
             String randomCode = String.format("%06d", random.nextInt(999999));
@@ -88,7 +77,6 @@ public class AuthService {
             user.setCodeExpiration(java.time.LocalDateTime.now().plusMinutes(5));
             this.userRepository.save(user);
 
-            // Esto se ejecuta en 1 milisegundo y sigue de largo sin esperar a Gmail
             this.sendVerificationEmail(user.getEmail(), randomCode);
         }
     }
@@ -114,6 +102,8 @@ public class AuthService {
         throw new RuntimeException("Invalid code or credentials");
     }
 
+    // CORRECCIÓN: Colocamos el @Async AQUÍ. Este es el proceso pesado que tarda segundos e internet puede bloquear
+    @Async 
     public void sendVerificationEmail(String to, String code) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
@@ -130,7 +120,7 @@ public class AuthService {
                 code +
                 "</div>" +
                 "<p style='font-size: 12px; color: #777; margin-top: 20px;'>" +
-                "Este código expira en 5 minutos por razones de seguridad." +
+                "Este código expira en 5 minutes por razones de seguridad." +
                 "</p>" +
                 "</div>";
 

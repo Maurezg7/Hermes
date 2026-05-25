@@ -19,11 +19,11 @@ public class StatesUserService {
         return this.stateRepository.getStateUser(idUser).getState();
     }
 
-    public void createState(String username) {
+    public void createState(String username, StatesUser initialEnv) {
         if (username == null || username.isBlank())
             return;
         Long idUser = this.userService.getUserId(username);
-        StateUser stateUser = new StateUser(idUser, StatesUser.LINE);
+        StateUser stateUser = new StateUser(idUser, initialEnv);
         this.stateRepository.save(stateUser);
     }
 
