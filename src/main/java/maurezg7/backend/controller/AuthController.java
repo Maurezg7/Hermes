@@ -24,13 +24,13 @@ import maurezg7.backend.models.Enum.StatesUser;
 @CrossOrigin(origins = "https://hermes-c6gswsisi-maurezg7.vercel.app")
 public class AuthController {
     private final AuthService authService;
-    private final  StatesUserService stateService;
-    
-    public AuthController(AuthService authService, StatesUserService stateService){
+    private final StatesUserService stateService;
+
+    public AuthController(AuthService authService, StatesUserService stateService) {
         this.authService = authService;
         this.stateService = stateService;
     }
-    
+
     public String info(Authentication auth) {
         return "Usuario conectado: " + auth.getName();
     }
@@ -56,21 +56,22 @@ public class AuthController {
         try {
             String token = this.authService.verifyCode(authUser.getDataUser(), authUser.getDataPassword(), code);
 
-            this.statesUserService.createState(user.getUsername(), StatesUser.LINE);
+            // CORRECCIÓN: Usamos 'stateService' y pasamos el usuario correcto desde
+            // authUser
+            this.stateService.createState(authUser.getDataUser(), StatesUser.LINE);
 
             return ResponseEntity.ok(Map.of(
-                "status", "success",
-                "token", token
-            ));
+                    "status", "success",
+                    "token", token));
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(Map.of("status", "error", "message", e.getMessage()));
+                    .body(Map.of("status", "error", "message", e.getMessage()));
         }
     }
 
     @PostMapping("/forgot-password")
-    public ResponseEntity<?> changePassword(@RequestBody ChangePassword changePassword){
+    public ResponseEntity<?> changePassword(@RequestBody ChangePassword changePassword) {
         this.authService.changePassword(changePassword);
-        return  ResponseEntity.ok(Collections.singletonMap("message", "Password changed"));
+        return ResponseEntity.ok(Collections.singletonMap("message", "Password changed"));
     }
 }
