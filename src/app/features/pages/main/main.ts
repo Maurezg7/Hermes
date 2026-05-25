@@ -79,7 +79,7 @@ export class Main implements OnInit {
   private searchSubject = new Subject<string>();
 
   ngOnInit() {
-    //this.checkSession();
+    this.checkSession();
     this.username = localStorage.getItem('currentUser') || 'Usuario';
     this.searchSubject
       .pipe(
@@ -103,6 +103,7 @@ export class Main implements OnInit {
     this.userService.getUserId(username).subscribe({
       next: (id) => {
         this.idUser = Number(id);
+        console.log('ID de usuario cargado:', this.idUser);
         this.loadUserState();
         this.refreshServers();
         this.refreshFriends();
