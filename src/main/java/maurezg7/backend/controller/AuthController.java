@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import maurezg7.backend.models.Enum.StatesUser;
 
 @RestController
 @RequestMapping("api/auth")
@@ -55,7 +56,7 @@ public class AuthController {
         try {
             String token = this.authService.verifyCode(authUser.getDataUser(), authUser.getDataPassword(), code);
 
-            this.stateService.createState(authUser.getDataUser());
+            this.statesUserService.createState(user.getUsername(), StatesUser.LINE);
 
             return ResponseEntity.ok(Map.of(
                 "status", "success",
