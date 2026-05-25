@@ -31,7 +31,7 @@ export class Login {
   }
 
   private loginUser() {
-    if (this.isLoading) return;
+    if (!this.isLoading) return;
     this.isLoading = false;
     this.authService.loginRequest(this.user).subscribe({
       next: () => {
