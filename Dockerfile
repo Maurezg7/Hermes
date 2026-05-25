@@ -1,10 +1,10 @@
-# ... (Tu configuración inicial de compilación con Maven que vimos antes)
+FROM maven:3.9.6-eclipse-temurin-21 AS builder
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
+
 FROM eclipse-temurin:21-jre-jammy
 WORKDIR /app
 COPY --from=builder /app/target/*.jar app.jar
-
-# CORRECCIÓN CLÍTICA: Informa de manera explícita al proxy de Render qué puerto escuchar
-EXPOSE 10000
-
-# Aseguramos que corra en el puerto 10000 mediante parámetro de ejecución
-ENTRYPOINT ["java", "-jar", "-Dserver.port=10000", "app.jar"]
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
