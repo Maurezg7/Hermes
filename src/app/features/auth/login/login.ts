@@ -16,7 +16,7 @@ export class Login {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  isLoading: boolean = true;
+  isLoading: boolean = false;
   isLocked = true;
   typeLocked = 'password';
 
@@ -32,12 +32,15 @@ export class Login {
 
   private loginUser() {
     if (!this.isLoading) return;
-    this.isLoading = false;
+    this.isLoading = true;
     this.authService.loginRequest(this.user).subscribe({
       next: () => {
         this.authService.setSession(this.user.getDataUser());
         this.router.navigate(['/app']);
       },
+      error: () => {
+        this.isLoading = false;
+      }
     });
   }
 
