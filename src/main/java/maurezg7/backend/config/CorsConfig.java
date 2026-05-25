@@ -14,12 +14,16 @@ public class CorsConfig {
                 CorsConfiguration corsConfiguration = new CorsConfiguration();
                 corsConfiguration.setAllowCredentials(true);
 
+                // CORRECCIÓN: Agregamos tu nueva URL de Vercel y un patrón genérico por si vuelve a cambiar
                 corsConfiguration.setAllowedOrigins(Arrays.asList(
                                 "http://localhost:4200",
                                 "http://localhost:8080",
+                                "https://hermes-inky-two.vercel.app", // <-- Tu frontend actual
                                 "https://hermes-c6gswsisi-maurezg7.vercel.app")); 
 
-                // Simplificado para permitir las cabeceras estándar necesarias
+                // Si tu URL de Vercel cambia seguido, puedes usar la siguiente línea en lugar de setAllowedOrigins:
+                // corsConfiguration.setAllowedOriginPatterns(Arrays.asList("https://*.vercel.app", "http://localhost:*"));
+
                 corsConfiguration.setAllowedHeaders(Arrays.asList(
                                 "Origin", "Content-Type", "Accept", "Authorization", "X-Requested-With"));
 
