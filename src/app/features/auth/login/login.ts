@@ -16,6 +16,7 @@ export class Login {
   private authService = inject(AuthService);
   private router = inject(Router);
 
+  isLoading = false;
   isLocked = true;
   typeLocked = 'password';
 
@@ -30,6 +31,7 @@ export class Login {
   }
 
   private loginUser() {
+    this.isLoading = true;
     this.authService.loginRequest(this.user).subscribe({
       next: () => {
         this.authService.setSession(this.user.getDataUser());
