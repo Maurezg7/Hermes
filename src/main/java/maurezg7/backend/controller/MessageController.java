@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/api/messages")
-@CrossOrigin(origins = "https://vercel.app")
+@CrossOrigin(origins = "https://hermes-c6gswsisi-maurezg7.vercel.app")
 public class MessageController {
     private final MessageService messageService;
     

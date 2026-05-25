@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/api/servers")
-@CrossOrigin(origins = "https://vercel.app")
+@CrossOrigin(origins = "https://hermes-c6gswsisi-maurezg7.vercel.app")
 public class ServerController {
     private final ServerService serverService;
     

@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/server-requests")
-@CrossOrigin(origins = "https://vercel.app")
+@CrossOrigin(origins = "https://hermes-c6gswsisi-maurezg7.vercel.app")
 public class ChannelRequestController {
 
     private final ServerRequestService requestService;

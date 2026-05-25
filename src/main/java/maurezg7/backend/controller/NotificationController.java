@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/notifications")
-@CrossOrigin(origins = "https://vercel.app")
+@CrossOrigin(origins = "https://hermes-c6gswsisi-maurezg7.vercel.app")
 public class NotificationController {
     private final NotificationService notificationService;
 
