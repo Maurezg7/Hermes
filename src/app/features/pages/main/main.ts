@@ -103,7 +103,6 @@ export class Main implements OnInit {
     this.userService.getUserId(username).subscribe({
       next: (id) => {
         this.idUser = Number(id);
-        console.log('ID de usuario cargado:', this.idUser);
         this.loadUserState();
         this.refreshServers();
         this.refreshFriends();
@@ -131,7 +130,9 @@ export class Main implements OnInit {
     if (!this.idUser) return;
     this.userState = state;
     this.userStateService.putStateUser(state, this.idUser).subscribe({
-      next: () => console.log('Estado actualizado:', state),
+      next: () => {
+        
+      },
       error: (err) => console.error('Error al actualizar estado:', err),
     });
   }
