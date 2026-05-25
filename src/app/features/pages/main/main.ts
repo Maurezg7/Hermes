@@ -130,9 +130,7 @@ export class Main implements OnInit {
     if (!this.idUser) return;
     this.userState = state;
     this.userStateService.putStateUser(state, this.idUser).subscribe({
-      next: () => {
-        
-      },
+      next: () => {},
       error: (err) => console.error('Error al actualizar estado:', err),
     });
   }
