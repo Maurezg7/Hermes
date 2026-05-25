@@ -34,13 +34,13 @@ public class User {
     private String verificationCode;
     private LocalDateTime codeExpiration;
     
-    @Column(updatable = true)
-    private boolean isVerified = false;
+    @Column(updatable = false)
+    private boolean isVerified = true;
 
     @PrePersist
     protected void onCreate() {
         this.dateCreation = LocalDateTime.now();
-        this.isVerified = false;
+        this.isVerified = true;
         if (this.role == null) {
             this.role = "USER";
         }
