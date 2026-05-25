@@ -25,7 +25,7 @@
       </div>
       <div class="field-wrapper">
         <label>DESCRIPCIÓN</label>
-        <textarea [(ngModel)]="server.description" name="serverDesc"></textarea>
+        <textarea [(ngModel)]="server.description" name="serverDesc" required></textarea>
       </div>
       <button type="submit" [disabled]="!server.name">CREAR</button>
     </form>
@@ -59,7 +59,7 @@
       </div>
       <div class="field-wrapper">
         <label>DESCRIPCIÓN</label>
-        <textarea [(ngModel)]="channel.description" name="channelDesc"></textarea>
+        <textarea [(ngModel)]="channel.description" name="channelDesc" required></textarea>
       </div>
       <button type="submit" [disabled]="!channel.name">CREAR</button>
     </form>
