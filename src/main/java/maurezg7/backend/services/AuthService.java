@@ -2,6 +2,8 @@ package maurezg7.backend.services;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+
+import java.lang.Thread.State;
 import java.security.SecureRandom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -25,6 +27,7 @@ public class AuthService {
     private final JavaMailSender mailSender;
     private final AuthRepository authRepository;
     private final UserRepository userRepository;
+    private final StatesUserService statesUserService;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
 
@@ -34,6 +37,7 @@ public class AuthService {
         this.authRepository = authRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.statesUserService = new StatesUserService();
         this.jwtUtils = jwtUtils;
     }
 
@@ -59,6 +63,7 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(rawPassword));
 
         this.userRepository.save(user);
+        this.statesUserService.createState(user.getUsername(), StatesUser.LINE);
         this.requestLogin(user.getUsername(), rawPassword);
     }
 
