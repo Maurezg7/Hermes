@@ -36,6 +36,6 @@
       </button>
     </div>
     <a href="/register">No tienes una cuenta?</a>
-    <button id="login" [disabled]="loading">{{ !loading ? 'Cargando...' : 'INGRESAR' }}</button>
+    <button id="login" [disabled]="loading">{{ loading ? 'Cargando...' : 'INGRESAR' }}</button>
   </form>
 </div>
