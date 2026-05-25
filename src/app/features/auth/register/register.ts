@@ -13,7 +13,7 @@ import { Server } from '../../models/server.model';
   styleUrl: './register.scss',
 })
 export class Register {
-  loading: boolean = true;
+  loading: boolean = false;
   private authService = inject(AuthService);
   private router = inject(Router);
   user: User = new User();
@@ -23,10 +23,9 @@ export class Register {
   isLocked = true;
   typeLocked = 'password';
 
-
   onSumbit() {
     if (this.loading) return;
-    this.loading = false;
+    this.loading = true;
     if (this.user.password === this.confirmPassword) {
       this.registerUser();
     } else {

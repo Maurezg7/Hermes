@@ -12,11 +12,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.scss',
 })
 export class Login {
+  loading: boolean = false;
   user: AuthUser = new AuthUser();
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  isLoading: boolean = false;
   isLocked = true;
   typeLocked = 'password';
 
@@ -27,20 +27,19 @@ export class Login {
   }
 
   onSumbit() {
+    if (this.loading) return;
+    this.loading = true;
     this.loginUser();
   }
 
   private loginUser() {
-    if (!this.isLoading) return;
-    this.isLoading = true;
+    this.loading = true;
     this.authService.loginRequest(this.user).subscribe({
       next: () => {
+        this.loading = false;
         this.authService.setSession(this.user.getDataUser());
         this.router.navigate(['/app']);
       },
-      error: () => {
-        this.isLoading = false;
-      }
     });
   }
 
