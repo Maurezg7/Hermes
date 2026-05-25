@@ -18,17 +18,25 @@ public class StateUserController {
     public StateUserController(StatesUserService stateService) {
         this.stateService = stateService;
     }
-    
-     @GetMapping("/userstate/{iduser}")
+
+    @GetMapping("/userstate/{iduser}")
     public String getUserStateByIDUser(@PathVariable Long iduser) {
         return this.stateService.getStateUser(iduser).name();
     }
 
     @PutMapping("/userstate/{iduser}/{stateuser}")
-    public void updateStateUser(
-        @PathVariable("iduser") Long iduser, 
-        @PathVariable("stateuser") StatesUser stateuser
-    ) {
-        this.stateService.changeUpdate(iduser, stateuser);
+    public ResponseEntity<Void> updateStateUser(
+            @PathVariable("iduser") Long iduser,
+            @PathVariable("stateuser") String stateuser) {
+        try {
+            StatesUser enumState = StatesUser.valueOf(stateuser.toUpperCase().trim());
+
+            this.stateService.changeUpdate(iduser, enumState);
+            return ResponseEntity.ok().build();
+
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
+
 }

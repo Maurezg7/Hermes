@@ -14,20 +14,22 @@ public class StatesUserService {
         this.stateRepository = stateRepository;
         this.userService = userService;
     }
-    
+
     public StatesUser getStateUser(Long idUser) {
         return this.stateRepository.getStateUser(idUser).getState();
     }
-    
+
     public void createState(String username) {
-        if (username == null || username.isBlank()) return;
+        if (username == null || username.isBlank())
+            return;
         Long idUser = this.userService.getUserId(username);
         StateUser stateUser = new StateUser(idUser, StatesUser.LINE);
         this.stateRepository.save(stateUser);
     }
-    
+
     public void changeUpdate(Long idUser, StatesUser newState) {
         StateUser stateUser = this.stateRepository.getStateUser(idUser);
+
         if (stateUser != null) {
             stateUser.setState(newState);
             this.stateRepository.save(stateUser);
