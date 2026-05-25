@@ -37,11 +37,7 @@
     </div>
     <a href="/register">No tienes una cuenta?</a>
     <button id="login" [disabled]="isLoading">
-      @if (isLoading) {
-        <span class="spinner"></span>
-      } @else {
-        INGRESAR
-      }
+      {{ loading ? 'Cargando...' : 'Ingresar' }}
     </button>
   </form>
 </div>
