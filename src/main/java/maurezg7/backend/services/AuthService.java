@@ -10,6 +10,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.time.LocalDateTime;
 import maurezg7.backend.exception.ResourceNotFoundException;
@@ -19,17 +21,18 @@ import maurezg7.backend.models.entity.User;
 import maurezg7.backend.repository.AuthRepository;
 import maurezg7.backend.repository.UserRepository;
 import maurezg7.backend.security.JwtUtils;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
+import maurezg7.backend.models.Enum.StatesUser;
 
 @Service
 public class AuthService {
     private final JavaMailSender mailSender;
     private final AuthRepository authRepository;
     private final UserRepository userRepository;
-    private final StatesUserService statesUserService;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
+
+    @Autowired
+    private final StatesUserService statesUserService;
 
     public AuthService(JavaMailSender mailSender, AuthRepository authRepository, UserRepository userRepository,
             PasswordEncoder passwordEncoder, JwtUtils jwtUtils) {
